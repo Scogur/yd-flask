@@ -2,7 +2,7 @@
 sudo apt install -y python3-venv 
 ```
 ```
-python -m venv .
+python -m venv .venv
 ```
 ```
 source .venv/bin/activate

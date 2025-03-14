@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public link</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="content">
+        <div class="file-grid">
+            {% from 'files.html' import file_item with context %}
+            {% for file in files %}
+                {% if file.type == "file" %}
+                    {{ file_item(file_name=file.name, type=file.type,path=file.path, pub_url=pub_url, file=file.file) }}
+                {% elif file.type == "dir" %}
+                    {{ file_item(file_name=file.name, type=file.type, path=file.path, pub_url=pub_url) }}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+
+</html>
+

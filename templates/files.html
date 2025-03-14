@@ -1,0 +1,33 @@
+{% macro file_item(file_name, type, path, pub_url, file) %}
+    {% if type == "file" %}
+        <div class="file-item">
+            <div class="file-icon document-icon">📄</div>
+            <div class="file-name">{{ file_name }}</div>
+            <div class="hover-arrow" file={{file}} onclick="openLink(event)">⬇️</div>
+        </div>
+    {% elif type == "dir" %}
+        <div class="file-item" onclick="window.location.href='{{ url_for('go_link', link=pub_url, path=path) }}'">
+            <div class="file-icon folder-icon'">📁</div>
+            <div class="file-name">{{ file_name }}</div>
+            <div class="hover-arrow" pub_url={{pub_url}} path={{path}} onclick="downloadFolder(event)">⬇️</div>
+        </div>
+    {% endif %}
+        <script>
+            function downloadFolder(event){
+                event.stopPropagation();
+                const pub_url = btoa(event.target.getAttribute('pub_url'));
+                const path = event.target.getAttribute('path');
+                fetch(`/download?link=${pub_url}&path=${path}`)
+                    .then(response => response.json())
+                    .then(data => {window.open(data.link)})
+                    .catch(error => {
+                        alert('error')
+                    })
+            }
+            function openLink(event){
+                event.stopPropagation();
+                const link = event.target.getAttribute('file');
+                window.open(link);
+            }
+        </script>
+{% endmacro %}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YD-FLASK</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/search.css') }}">
+</head>
+<body>
+    <form action="{{ url_for('go_link', link=link) }}">
+        <div class="search-container">
+            <input type="text" class="search-input" name="link" placeholder="Your link...">
+            <button class="search-button" type="submit">Go</button>
+        </div>
+    </form>
+    
+</body>
+</html>
+    

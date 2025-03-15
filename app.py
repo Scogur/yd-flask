@@ -1,9 +1,7 @@
-from dotenv import load_dotenv
 from flask import Flask, render_template, request, jsonify
 import client
 import base64
 
-load_dotenv()
 
 app = Flask(__name__)
 
